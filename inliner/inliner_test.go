@@ -158,7 +158,7 @@ func TestNotInlinable(t *testing.T) {
   </head>
   <body>
     <p>
-      <a href="http://aymerick.com">Superbe website</a>
+      <a href="http://cyberok-org.com">Superbe website</a>
     </p>
 </body>
 </html>`
@@ -184,7 +184,7 @@ a:visited {
 </style></head>
   <body>
     <p>
-      <a href="http://aymerick.com">Superbe website</a>
+      <a href="http://cyberok-org.com">Superbe website</a>
     </p>
 
 </body></html>`
