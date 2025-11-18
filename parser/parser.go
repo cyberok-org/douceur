@@ -231,7 +231,9 @@ func (parser *Parser) parseAtRule() (*css.Rule, error) {
 			if err != nil {
 				return result, err
 			}
-
+			if result.Prelude != "" && prelude == "" {
+				return result, fmt.Errorf("replacing a non-empty value %q with an empty one", result.Prelude)
+			}
 			result.Prelude = prelude
 		}
 	}
@@ -268,7 +270,9 @@ func (parser *Parser) parseQualifiedRule() (*css.Rule, error) {
 			if err != nil {
 				return result, err
 			}
-
+			if result.Prelude != "" && prelude == "" {
+				return result, fmt.Errorf("replacing a non-empty value %q with an empty one", result.Prelude)
+			}
 			result.Prelude = prelude
 		}
 	}
