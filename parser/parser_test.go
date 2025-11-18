@@ -1,11 +1,10 @@
 package parser
 
 import (
-	"fmt"
 	"strings"
 	"testing"
 
-	"github.com/aymerick/douceur/css"
+	"github.com/cyberok-org/douceur/css"
 )
 
 func MustParse(t *testing.T, txt string, nbRules int) *css.Stylesheet {
@@ -25,13 +24,13 @@ func MustEqualRule(t *testing.T, parsedRule *css.Rule, expectedRule *css.Rule) {
 	if !parsedRule.Equal(expectedRule) {
 		diff := parsedRule.Diff(expectedRule)
 
-		t.Fatal(fmt.Sprintf("Rule parsing error\nExpected:\n\"%s\"\nGot:\n\"%s\"\nDiff:\n%s", expectedRule, parsedRule, strings.Join(diff, "\n")))
+		t.Fatalf("Rule parsing error\nExpected:\n\"%s\"\nGot:\n\"%s\"\nDiff:\n%s", expectedRule, parsedRule, strings.Join(diff, "\n"))
 	}
 }
 
 func MustEqualCSS(t *testing.T, ruleString string, expected string) {
 	if ruleString != expected {
-		t.Fatal(fmt.Sprintf("CSS generation error\n   Expected:\n\"%s\"\n   Got:\n\"%s\"", expected, ruleString))
+		t.Fatalf("CSS generation error\n   Expected:\n\"%s\"\n   Got:\n\"%s\"", expected, ruleString)
 	}
 }
 

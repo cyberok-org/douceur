@@ -3,11 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"os"
 
-	"github.com/aymerick/douceur/inliner"
-	"github.com/aymerick/douceur/parser"
+	"github.com/cyberok-org/douceur/inliner"
+	"github.com/cyberok-org/douceur/parser"
 )
 
 const (
@@ -86,7 +85,7 @@ func inlineCSS(filePath string) {
 }
 
 func readFile(filePath string) []byte {
-	file, err := ioutil.ReadFile(filePath)
+	file, err := os.ReadFile(filePath)
 	if err != nil {
 		fmt.Println("Failed to open file: ", filePath, err)
 		os.Exit(1)

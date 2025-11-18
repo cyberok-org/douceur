@@ -176,13 +176,13 @@ func (rule *Rule) String() string {
 		}
 	} else {
 		// AtRule
-		result += fmt.Sprintf("%s", rule.Name)
+		result += rule.Name
 
 		if rule.Prelude != "" {
 			if result != "" {
 				result += " "
 			}
-			result += fmt.Sprintf("%s", rule.Prelude)
+			result += rule.Prelude
 		}
 	}
 

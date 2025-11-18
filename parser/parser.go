@@ -8,7 +8,7 @@ import (
 
 	"github.com/gorilla/css/scanner"
 
-	"github.com/aymerick/douceur/css"
+	"github.com/cyberok-org/douceur/css"
 )
 
 const (
@@ -340,7 +340,7 @@ func (parser *Parser) shiftToken() *scanner.Token {
 func (parser *Parser) err() error {
 	if parser.tokenError() {
 		token := parser.nextToken()
-		return fmt.Errorf("Tokenizer error: %s", token.String())
+		return fmt.Errorf("tokenizer error: %s", token.String())
 	}
 
 	return nil

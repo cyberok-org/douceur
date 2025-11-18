@@ -44,7 +44,7 @@ The `bgcolor` attribute is inserted, in addition to the inlined `background-colo
 
 Install tool:
 
-    $ go install github.com/aymerick/douceur
+    $ go install github.com/cyberok-org/douceur
 
 Parse a CSS file and display result:
 
@@ -59,7 +59,7 @@ Inline CSS in an HTML document and display result:
 
 Fetch package:
 
-    $ go get github.com/aymerick/douceur
+    $ go get github.com/cyberok-org/douceur
 
 
 ### Parse CSS
@@ -70,7 +70,7 @@ package main
 import (
     "fmt"
 
-    "github.com/aymerick/douceur/parser"
+    "github.com/cyberok-org/douceur/parser"
 )
 
 func main() {
@@ -114,7 +114,7 @@ package main
 import (
     "fmt"
 
-    "github.com/aymerick/douceur/inliner"
+    "github.com/cyberok-org/douceur/inliner"
 )
 
 func main() {

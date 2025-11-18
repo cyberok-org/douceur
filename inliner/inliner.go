@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/aymerick/douceur/css"
-	"github.com/aymerick/douceur/parser"
+	"github.com/cyberok-org/douceur/css"
+	"github.com/cyberok-org/douceur/parser"
 	"golang.org/x/net/html"
 )
 
@@ -32,7 +32,7 @@ type Inliner struct {
 	stylesheets []*css.Stylesheet
 
 	// Collected inlinable style rules
-	rules []*StyleRule
+	rules []*StyleRule // nolint
 
 	// HTML elements matching collected inlinable style rules
 	elements map[string]*Element

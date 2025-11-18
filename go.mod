@@ -1,4 +1,4 @@
-module github.com/aymerick/douceur
+module github.com/cyberok-org/douceur
 
 go 1.25.4
 
