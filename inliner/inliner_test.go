@@ -1,7 +1,6 @@
 package inliner
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -42,7 +41,7 @@ func TestInliner(t *testing.T) {
 	}
 
 	if output != expectedOutput {
-		t.Fatal(fmt.Sprintf("CSS inliner error\nExpected:\n\"%s\"\nGot:\n\"%s\"", expectedOutput, output))
+		t.Fatalf("CSS inliner error\nExpected:\n\"%s\"\nGot:\n\"%s\"", expectedOutput, output)
 	}
 }
 
@@ -83,7 +82,7 @@ func TestInlineStylePriority(t *testing.T) {
 	}
 
 	if output != expectedOutput {
-		t.Fatal(fmt.Sprintf("CSS inliner error\nExpected:\n\"%s\"\nGot:\n\"%s\"", expectedOutput, output))
+		t.Fatalf("CSS inliner error\nExpected:\n\"%s\"\nGot:\n\"%s\"", expectedOutput, output)
 	}
 }
 
@@ -126,7 +125,7 @@ func TestImportantPriority(t *testing.T) {
 	}
 
 	if output != expectedOutput {
-		t.Fatal(fmt.Sprintf("CSS inliner error\nExpected:\n\"%s\"\nGot:\n\"%s\"", expectedOutput, output))
+		t.Fatalf("CSS inliner error\nExpected:\n\"%s\"\nGot:\n\"%s\"", expectedOutput, output)
 	}
 }
 
@@ -195,7 +194,7 @@ a:visited {
 	}
 
 	if output != expectedOutput {
-		t.Fatal(fmt.Sprintf("CSS inliner error\nExpected:\n\"%s\"\nGot:\n\"%s\"", expectedOutput, output))
+		t.Fatalf("CSS inliner error\nExpected:\n\"%s\"\nGot:\n\"%s\"", expectedOutput, output)
 	}
 }
 
@@ -283,6 +282,6 @@ func TestStyleToAttr(t *testing.T) {
 	}
 
 	if output != expectedOutput {
-		t.Fatal(fmt.Sprintf("CSS inliner error\nExpected:\n\"%s\"\nGot:\n\"%s\"", expectedOutput, output))
+		t.Fatalf("CSS inliner error\nExpected:\n\"%s\"\nGot:\n\"%s\"", expectedOutput, output)
 	}
 }
