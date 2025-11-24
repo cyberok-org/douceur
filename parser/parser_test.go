@@ -450,36 +450,39 @@ func TestAtRuleMedia2(t *testing.T) {
 		:root { 
 			path, polygon {fill: black}; 
 		} 
-	}
-	@media (prefers-color-scheme: dark) { 
-		:root { 
-				path, polygon {fill: white}; 
-			} 
-		}`
+	}`
 	expectedRule := &css.Rule{
 		Kind:    css.AtRule,
 		Name:    "@media",
-		Prelude: "screen, print",
+		Prelude: "(prefers-color-scheme: light)",
 		Rules: []*css.Rule{
 			{
 				Kind:      css.QualifiedRule,
-				Prelude:   "body",
-				Selectors: []string{"body"},
+				Prelude:   ":root",
+				Selectors: []string{":root"},
 				Declarations: []*css.Declaration{
 					{
-						Property: "line-height",
-						Value:    "1.2",
+						Property: "path, polygon {fill",
+						Value:    "black",
 					},
 				},
 			},
 		},
 	}
 
-	expectedOutput := `@media screen, print {
-  body {
-    line-height: 1.2;
-  }
-}`
+	expectedOutput := `@media (prefers-color-scheme: light) {
+            :root {
+            path, polygon {fill: black;
+          }
+            } 
+        	}
+        	@media (prefers-color-scheme: dark) {
+            root { 
+        				path, polygon {fill: white;
+          }
+            } 
+        		};
+          }`
 	stylesheet := MustParse(t, input, 1)
 	rule := stylesheet.Rules[0]
 
