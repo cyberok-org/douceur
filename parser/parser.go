@@ -273,6 +273,7 @@ func (parser *Parser) parseQualifiedRule() (*css.Rule, error) {
 			if result.Prelude != "" && prelude == "" {
 				return result, fmt.Errorf("replacing a non-empty value %q with an empty one", result.Prelude)
 			}
+
 			result.Prelude = prelude
 		}
 	}
@@ -297,6 +298,10 @@ func (parser *Parser) parsePrelude() (string, error) {
 	}
 
 	result = strings.TrimSpace(result)
+
+	if result == "" && parser.tokenChar(";") {
+		parser.shiftToken()
+	}
 
 	// log.Printf("[parsed] prelude: %s", result)
 
