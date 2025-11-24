@@ -444,6 +444,53 @@ func TestAtRuleKeyframes(t *testing.T) {
 	MustEqualCSS(t, stylesheet.String(), expectedOutput)
 }
 
+// "@media (prefers-color-scheme: light) {:root { path, polygon {fill: black}; } }\n@media (prefers-color-scheme: dark) { :root { path, polygon {fill: white}; } }"
+func TestAtRuleMedia2(t *testing.T) {
+	input := `@media (prefers-color-scheme: light) {
+		:root { 
+			path, polygon {fill: black}; 
+		} 
+	}`
+	expectedRule := &css.Rule{
+		Kind:    css.AtRule,
+		Name:    "@media",
+		Prelude: "(prefers-color-scheme: light)",
+		Rules: []*css.Rule{
+			{
+				Kind:      css.QualifiedRule,
+				Prelude:   ":root",
+				Selectors: []string{":root"},
+				Declarations: []*css.Declaration{
+					{
+						Property: "path, polygon {fill",
+						Value:    "black",
+					},
+				},
+			},
+		},
+	}
+
+	expectedOutput := `@media (prefers-color-scheme: light) {
+            :root {
+            path, polygon {fill: black;
+          }
+            } 
+        	}
+        	@media (prefers-color-scheme: dark) {
+            root { 
+        				path, polygon {fill: white;
+          }
+            } 
+        		};
+          }`
+	stylesheet := MustParse(t, input, 1)
+	rule := stylesheet.Rules[0]
+
+	MustEqualRule(t, rule, expectedRule)
+
+	MustEqualCSS(t, stylesheet.String(), expectedOutput)
+}
+
 func TestAtRuleMedia(t *testing.T) {
 	input := `@media screen, print {
   body { line-height: 1.2 }

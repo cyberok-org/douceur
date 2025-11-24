@@ -248,7 +248,9 @@ func (parser *Parser) parseQualifiedRule() (*css.Rule, error) {
 	result := css.NewRule(css.QualifiedRule)
 
 	for parser.tokenParsable() {
-		if parser.tokenChar("{") {
+		if parser.tokenChar(";") {
+			parser.shiftToken()
+		} else if parser.tokenChar("{") {
 			if result.Prelude == "" {
 				errMsg := fmt.Sprintf("Unexpected { character: %s", parser.nextToken().String())
 				return result, errors.New(errMsg)
@@ -273,6 +275,7 @@ func (parser *Parser) parseQualifiedRule() (*css.Rule, error) {
 			if result.Prelude != "" && prelude == "" {
 				return result, fmt.Errorf("replacing a non-empty value %q with an empty one", result.Prelude)
 			}
+
 			result.Prelude = prelude
 		}
 	}
@@ -297,6 +300,10 @@ func (parser *Parser) parsePrelude() (string, error) {
 	}
 
 	result = strings.TrimSpace(result)
+
+	if result == "" && parser.tokenChar(";") {
+		parser.shiftToken()
+	}
 
 	// log.Printf("[parsed] prelude: %s", result)
 
