@@ -248,7 +248,9 @@ func (parser *Parser) parseQualifiedRule() (*css.Rule, error) {
 	result := css.NewRule(css.QualifiedRule)
 
 	for parser.tokenParsable() {
-		if parser.tokenChar("{") {
+		if parser.tokenChar(";") {
+			parser.shiftToken()
+		} else if parser.tokenChar("{") {
 			if result.Prelude == "" {
 				errMsg := fmt.Sprintf("Unexpected { character: %s", parser.nextToken().String())
 				return result, errors.New(errMsg)
